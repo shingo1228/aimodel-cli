@@ -2,6 +2,8 @@
 
 A standalone command-line interface for downloading and managing AI models from CivitAI.
 
+**English** | [日本語](README.ja.md)
+
 ## Features
 
 - 🔍 **Search Models**: Search CivitAI with filters for content type, base model, and more
