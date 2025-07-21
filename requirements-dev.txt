@@ -1,0 +1,16 @@
+# Development dependencies
+-r requirements.txt
+
+# Testing
+pytest>=6.0
+
+# Code formatting and linting  
+black>=21.0
+flake8>=3.8
+
+# Type checking
+mypy>=0.812
+
+# Build tools
+build>=0.7.0
+twine>=3.4.0
