@@ -20,12 +20,12 @@ def info(target: str, local: bool) -> None:
     TARGET can be either:
     - A model ID (e.g., 123456)
     - A local file path (with --local flag)
-    - A CivitAI URL (e.g., https://civitai.com/models/123456)
+    - A model URL (e.g., https://civitai.com/models/123456)
     
     Examples:
-        civitai info 123456
-        civitai info "https://civitai.com/models/123456"
-        civitai info ./model.safetensors --local
+        aimodel info 123456
+        aimodel info "https://civitai.com/models/123456"
+        aimodel info ./model.safetensors --local
     """
     if local:
         # Handle local file
@@ -39,7 +39,7 @@ def info(target: str, local: bool) -> None:
         
         if not data:
             print_info(f"No metadata found for: {file_path.name}")
-            print_info("Try running: civitai scan to fetch model information")
+            print_info("Try running: aimodel metadata complete to fetch model information")
             return
         
         # Display local info
@@ -97,10 +97,10 @@ def info(target: str, local: bool) -> None:
     if isinstance(result, str):
         error_messages = {
             'timeout': 'Request timed out. Please try again.',
-            'connection_error': 'Failed to connect to CivitAI. Check your internet connection.',
+            'connection_error': 'Failed to connect to AI model service. Check your internet connection.',
             'not_found': f'Model {model_id} not found.',
-            'service_unavailable': 'CivitAI service is currently unavailable.',
-            'invalid_json': 'Received invalid response from CivitAI.',
+            'service_unavailable': 'AI model service is currently unavailable.',
+            'invalid_json': 'Received invalid response from AI model service.',
         }
         print_error(error_messages.get(result, f'Unknown error: {result}'))
         return

@@ -51,12 +51,12 @@ def search(
     limit: int,
     page: int
 ) -> None:
-    """Search for models on CivitAI.
+    """Search for AI models.
     
     Examples:
-        civitai search "realistic portrait"
-        civitai search --type LORA --base-model "SD 1.5"
-        civitai search --sort "Most Liked" --limit 10
+        aimodel search "realistic portrait"
+        aimodel search --type LORA --base-model "SD 1.5"
+        aimodel search --sort "Most Liked" --limit 10
     """
     client = CivitAIClient()
     
@@ -81,10 +81,10 @@ def search(
     if isinstance(result, str):
         error_messages = {
             'timeout': 'Request timed out. Please try again.',
-            'connection_error': 'Failed to connect to CivitAI. Check your internet connection.',
+            'connection_error': 'Failed to connect to AI model service. Check your internet connection.',
             'not_found': 'No results found.',
-            'service_unavailable': 'CivitAI service is currently unavailable.',
-            'invalid_json': 'Received invalid response from CivitAI.',
+            'service_unavailable': 'AI model service is currently unavailable.',
+            'invalid_json': 'Received invalid response from AI model service.',
         }
         print_error(error_messages.get(result, f'Unknown error: {result}'))
         return

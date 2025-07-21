@@ -30,14 +30,14 @@ def download(
     show_versions: bool,
     show_files: bool
 ) -> None:
-    """Download a model from CivitAI.
+    """Download an AI model.
     
     Examples:
-        civitai download 123456
-        civitai download 123456 --version 234567
-        civitai download 123456 --file 345678
-        civitai download 123456 --path ./my-models
-        civitai download 123456 --show-versions
+        aimodel download 123456
+        aimodel download 123456 --version 234567
+        aimodel download 123456 --file 345678
+        aimodel download 123456 --path ./my-models
+        aimodel download 123456 --show-versions
     """
     client = CivitAIClient()
     
@@ -52,10 +52,10 @@ def download(
     if isinstance(model_data, str):
         error_messages = {
             'timeout': 'Request timed out. Please try again.',
-            'connection_error': 'Failed to connect to CivitAI. Check your internet connection.',
+            'connection_error': 'Failed to connect to AI model service. Check your internet connection.',
             'not_found': f'Model {model_id} not found.',
-            'service_unavailable': 'CivitAI service is currently unavailable.',
-            'invalid_json': 'Received invalid response from CivitAI.',
+            'service_unavailable': 'AI model service is currently unavailable.',
+            'invalid_json': 'Received invalid response from AI model service.',
         }
         print_error(error_messages.get(model_data, f'Unknown error: {model_data}'))
         return
@@ -131,10 +131,10 @@ def download(
 @click.option('--path', type=click.Path(path_type=Path),
               help='Directory to save the file (default: configured download path)')
 def download_url(url: str, path: Optional[Path]) -> None:
-    """Download a model from a CivitAI URL.
+    """Download a model from a URL.
     
     Examples:
-        civitai download-url "https://civitai.com/models/123456"
+        aimodel download-url "https://civitai.com/models/123456"
     """
     import re
     

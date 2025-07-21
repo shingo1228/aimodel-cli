@@ -17,15 +17,15 @@ from .utils import print_error, print_info
 @click.option('--verbose', '-v', is_flag=True, help='Enable verbose output')
 @click.pass_context
 def cli(ctx: click.Context, verbose: bool) -> None:
-    """AI Model CLI - Download and manage AI models from CivitAI.
+    """AI Model CLI - Download and manage AI models.
     
-    This tool allows you to search, download, and manage AI models from CivitAI
-    directly from the command line.
+    This tool allows you to search, download, and manage AI models
+    directly from the command line with support for multiple sources.
     
     Examples:
         aimodel search "realistic portrait"
         aimodel download 123456
-        aimodel config set api-key YOUR_API_KEY
+        aimodel config api-key YOUR_API_KEY
         aimodel info 123456
     
     Get started by configuring your API key:
@@ -59,7 +59,7 @@ def setup() -> None:
     
     # API Key setup
     console.print("1. API Key Configuration")
-    console.print("   Get your API key from: https://civitai.com/user/account")
+    console.print("   Get your CivitAI API key from: https://civitai.com/user/account")
     
     current_key = config_obj.get('api_key', '')
     if current_key:

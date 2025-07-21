@@ -1,4 +1,4 @@
-"""Download functionality for CivitAI models."""
+"""Download functionality for AI models."""
 
 import time
 from pathlib import Path
@@ -48,7 +48,7 @@ class Downloader:
         
         if direct_url == "auth_required":
             raise DownloadError(
-                "This file requires authentication. Please set your CivitAI API key."
+                "This file requires authentication. Please set your API key."
             )
         elif not direct_url:
             raise DownloadError("Could not get download URL")

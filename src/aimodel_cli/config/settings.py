@@ -1,4 +1,4 @@
-"""Configuration management for CivitAI CLI."""
+"""Configuration management for AI Model CLI."""
 
 import json
 import os
@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 
 
 class Config:
-    """Configuration manager for CivitAI CLI."""
+    """Configuration manager for AI Model CLI."""
     
     def __init__(self, config_dir: Optional[Path] = None):
         """Initialize configuration manager.

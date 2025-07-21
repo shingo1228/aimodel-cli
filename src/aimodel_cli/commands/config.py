@@ -103,9 +103,9 @@ def show_config_path() -> None:
 @click.argument('api_key', required=False)
 @click.option('--show', is_flag=True, help='Show current API key (masked)')
 def set_api_key(api_key: str, show: bool) -> None:
-    """Set or show CivitAI API key.
+    """Set or show API key.
     
-    Get your API key from: https://civitai.com/user/account
+    Get your CivitAI API key from: https://civitai.com/user/account
     """
     config_obj = get_config()
     
@@ -119,7 +119,7 @@ def set_api_key(api_key: str, show: bool) -> None:
         return
     
     if api_key is None:
-        api_key = click.prompt('Enter your CivitAI API key', hide_input=True)
+        api_key = click.prompt('Enter your API key', hide_input=True)
     
     config_obj.set('api_key', api_key)
     print_success("API key configured successfully.")
