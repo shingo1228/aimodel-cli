@@ -161,15 +161,36 @@ def list_model_paths() -> None:
 @click.argument('model_type')
 @click.argument('path', type=click.Path(exists=False), required=False)
 def set_model_path(model_type: str, path: str) -> None:
-    """Set download path for specific model type.
+    """Set download path for specific model type with smart organization.
     
     MODEL_TYPE: Type of model (Checkpoint, LORA, TextualInversion, etc.)
-    PATH: Directory path (empty string to use default)
+    PATH: Directory path (empty string to use default structure)
+    
+    Default Model Type Mapping:
+    • Checkpoint → Stable-diffusion/
+    • LORA → Lora/
+    • LoCon → Lora/ (combined with LORA)
+    • DoRA → Lora/ (combined with LORA)
+    • TextualInversion → embeddings/
+    • Upscaler → ESRGAN/
+    • Controlnet → ControlNet/
+    • VAE → VAE/
+    • Other types use their original names
     
     Available model types:
     Checkpoint, TextualInversion, LORA, LoCon, DoRA, Hypernetwork,
     AestheticGradient, Controlnet, Poses, VAE, Upscaler, MotionModule,
     Wildcards, Workflows, Other
+    
+    Examples:
+        # Set custom LORA path
+        aimodel config model-path LORA /custom/lora/models
+        
+        # Reset to default structure
+        aimodel config model-path Checkpoint ""
+        
+        # View current path
+        aimodel config model-path LORA
     """
     config_obj = get_config()
     

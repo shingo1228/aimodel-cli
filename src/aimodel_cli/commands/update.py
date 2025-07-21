@@ -39,13 +39,34 @@ def check_updates(
     report: Optional[Path],
     report_include_current: bool
 ) -> None:
-    """Check for available model updates.
+    """Check for available model updates with comprehensive report generation.
+    
+    This command scans existing model files for available updates on CivitAI
+    and can generate comprehensive Markdown reports with preview images.
     
     Either specify PATH or use --model-type option:
     
     PATH: File or directory path to check
     
     --model-type: Check models in the configured download path for a specific model type
+                 (Checkpoint, LORA, TextualInversion, etc.)
+    
+    Report Generation Features:
+    • Comprehensive Markdown reports with model previews and CivitAI links
+    • Preview images automatically resized for readability
+    • Direct links to CivitAI model pages and specific versions
+    • Technical details including file sizes, formats, download counts
+    • Summary statistics (total checked, updates available, up-to-date models)
+    
+    Examples:
+        # Check LORA models and generate report with previews
+        aimodel update check --model-type LORA --report lora-updates.md
+        
+        # Check specific directory recursively with auto-download
+        aimodel update check /path/to/models --recursive --download
+        
+        # Generate comprehensive report including up-to-date models
+        aimodel update check --model-type Checkpoint --report full-report.md --report-include-current
     """
     if path is None and model_type is None:
         print_error("Must specify either PATH or --model-type option")

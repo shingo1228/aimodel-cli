@@ -34,7 +34,10 @@ def complete_metadata(
     metadata_only: bool, 
     preview_only: bool
 ) -> None:
-    """Complete missing metadata and preview files for existing models.
+    """Complete missing metadata and preview files using SHA256 hash identification.
+    
+    This command analyzes existing model files using SHA256 hash identification
+    to fetch metadata from CivitAI, including descriptions, tags, and preview images.
     
     Either specify PATH or use --model-type option:
     
@@ -43,9 +46,20 @@ def complete_metadata(
     --model-type: Process files in the configured download path for a specific model type
                  (Checkpoint, LORA, TextualInversion, Upscaler, Controlnet, etc.)
     
+    Hash-based Identification:
+    • Calculates SHA256 hash of each model file
+    • Matches against CivitAI database for accurate identification
+    • Downloads model name, description, tags, and preview images
+    • Creates .json metadata files and .preview.png images
+    
     The recursive behavior is determined by:
     1. Command line flags --recursive/-r or --no-recursive (highest priority)
     2. Config setting metadata_recursive_default (if no flags specified)
+    
+    Examples:
+        aimodel metadata complete --model-type LORA --recursive
+        aimodel metadata complete /path/to/models --force --recursive
+        aimodel metadata complete --model-type Checkpoint --preview-only
     """
     if metadata_only and preview_only:
         print_error("Cannot specify both --metadata-only and --preview-only")

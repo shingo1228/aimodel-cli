@@ -51,12 +51,29 @@ def search(
     limit: int,
     page: int
 ) -> None:
-    """Search for AI models.
+    """Search for AI models with comprehensive filtering.
+    
+    Advanced search with multiple content types, base models, and sorting options.
+    Results show model information, download counts, and availability status.
+    
+    Content Types Available:
+    Checkpoint, TextualInversion, LORA, LoCon, DoRA, Hypernetwork, 
+    AestheticGradient, Controlnet, Poses, VAE, Upscaler, MotionModule, 
+    Wildcards, Workflows, Other
+    
+    Base Models Available:
+    SD 1.4, SD 1.5, SD 2.0, SD 2.1, SDXL 1.0, SDXL Turbo,
+    Stable Cascade, Pony, Flux.1 D, Flux.1 S, Other
     
     Examples:
-        aimodel search "realistic portrait"
-        aimodel search --type LORA --base-model "SD 1.5"
-        aimodel search --sort "Most Liked" --limit 10
+        # Search with multiple filters
+        aimodel search "realistic portrait" --type LORA --type Checkpoint --base-model "SD 1.5"
+        
+        # Recent popular models
+        aimodel search --sort "Most Downloaded" --period Week --limit 10
+        
+        # Include NSFW content
+        aimodel search "artistic style" --nsfw --type LORA
     """
     client = CivitAIClient()
     

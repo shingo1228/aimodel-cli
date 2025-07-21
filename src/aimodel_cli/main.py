@@ -19,19 +19,29 @@ from .utils import print_error, print_info
 def cli(ctx: click.Context, verbose: bool) -> None:
     """AI Model CLI - Download and manage AI models.
     
-    This tool allows you to search, download, and manage AI models
-    directly from the command line with support for multiple sources.
+    This tool provides comprehensive AI model management with advanced features
+    for existing model collections and new downloads.
+    
+    Key Features:
+    • Search and download models with advanced filters
+    • Check for updates in existing model collections
+    • Complete missing metadata using SHA256 hash identification
+    • Generate Markdown reports with preview images
+    • Smart model-type organization (Checkpoint→Stable-diffusion, LORA→Lora, etc.)
+    • Recursive directory processing
+    • Personal API key support for restricted content
     
     Examples:
-        aimodel search "realistic portrait"
+        aimodel search "realistic portrait" --type LORA
         aimodel download 123456
-        aimodel config api-key YOUR_API_KEY
-        aimodel info 123456
+        aimodel metadata complete --model-type LORA --recursive
+        aimodel update check --model-type Checkpoint --report updates.md
+        aimodel config model-path LORA /custom/lora/path
     
-    Get started by configuring your API key:
-        aimodel config api-key
+    Get started with interactive setup:
+        aimodel setup
     
-    For more help on any command:
+    For detailed help on any command:
         aimodel COMMAND --help
     """
     # Ensure context object exists
