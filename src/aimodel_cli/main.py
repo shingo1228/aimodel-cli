@@ -25,10 +25,10 @@ def cli(ctx: click.Context, verbose: bool) -> None:
     Key Features:
     • Search and download models with advanced filters
     • Check for updates in existing model collections
-    • Complete missing metadata using SHA256 hash identification
+    • Complete missing metadata using SHA256 hash identification with caching
     • Generate Markdown reports with preview images
     • Smart model-type organization (Checkpoint→Stable-diffusion, LORA→Lora, etc.)
-    • Recursive directory processing
+    • Recursive directory processing with performance optimization
     • Personal API key support for restricted content
     
     Examples:

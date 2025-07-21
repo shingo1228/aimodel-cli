@@ -171,7 +171,10 @@ def complete_metadata(
 @metadata.command('hash')
 @click.argument('file_path', type=click.Path(exists=True, path_type=Path))
 def calculate_hash(file_path: Path) -> None:
-    """Calculate SHA256 hash of a model file.
+    """Calculate SHA256 hash of a model file with caching.
+    
+    This command calculates the SHA256 hash and automatically saves it to the
+    model's metadata file. Subsequent calls will use the cached value for instant results.
     
     FILE_PATH: Path to the model file
     """
@@ -179,10 +182,18 @@ def calculate_hash(file_path: Path) -> None:
         print_error(f"File {file_path} is not a supported model file")
         return
     
-    print_info("Calculating SHA256 hash...")
-    
     try:
-        hash_value = CivitAIClient.calculate_sha256(file_path)
+        model_info = ModelInfo(file_path)
+        
+        # Check if hash is already cached
+        existing_data = model_info.load_from_json()
+        if 'sha256' in existing_data and existing_data['sha256']:
+            print_info("Using cached SHA256 hash...")
+            hash_value = existing_data['sha256']
+        else:
+            print_info("Calculating SHA256 hash...")
+            hash_value = model_info.generate_sha256()
+        
         print_info(f"SHA256: {hash_value}")
         
     except Exception as e:
@@ -215,9 +226,9 @@ def _process_single_file(
         if not metadata_only and not preview_only and json_exists and preview_exists:
             return "skipped"
     
-    # Calculate hash
+    # Calculate hash (uses cached value if available)
     try:
-        file_hash = CivitAIClient.calculate_sha256(model_file)
+        file_hash = model_info.generate_sha256()
     except Exception as e:
         print_error(f"Failed to calculate hash for {model_file.name}: {e}")
         return "error"
