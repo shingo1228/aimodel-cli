@@ -25,12 +25,6 @@ cd aimodel-cli
 pip install -e .
 ```
 
-### From PyPI (Coming Soon)
-
-```bash
-pip install aimodel-cli
-```
-
 ### Requirements
 
 - Python 3.8+
@@ -374,21 +368,6 @@ Downloaded models create these files:
 - Check configuration with: `aimodel config list`
 - Reset if needed: `aimodel config reset`
 - View config location: `aimodel config path`
-
-## Migration from civitai-cli
-
-If you previously used `civitai-cli`, you can manually copy your configuration:
-
-```bash
-# Copy old config to new location (if needed)
-cp -r ~/.civitai-cli/* ~/.aimodel-cli/
-```
-
-Then update any custom paths:
-```bash
-aimodel config list
-aimodel config download-path /your/custom/path
-```
 
 ## Acknowledgments
 
