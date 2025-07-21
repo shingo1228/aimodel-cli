@@ -47,7 +47,7 @@ pip install -e .
 
 2. **モデル検索**
    ```bash
-   aimodel search "リアルポートレート"
+   aimodel search "realistic portrait"
    aimodel search --type LORA --base-model "SD 1.5"
    ```
 
@@ -95,7 +95,7 @@ aimodel search [QUERY] [OPTIONS]
 
 **使用例:**
 ```bash
-aimodel search "アニメスタイル"
+aimodel search "anime style"
 aimodel search --type LORA --sort "Most Liked" --limit 10
 aimodel search --base-model "SDXL 1.0" --nsfw
 ```
