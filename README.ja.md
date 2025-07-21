@@ -81,10 +81,10 @@ pip install -e .
 CivitAIでモデルを検索:
 
 ```bash
-aimodel search [QUERY] [オプション]
+aimodel search [QUERY] [OPTIONS]
 ```
 
-**オプション:**
+**OPTIONS:**
 - `--type`: コンテンツタイプでフィルタ（Checkpoint、LORA等）
 - `--base-model`: ベースモデルでフィルタ（SD 1.5、SDXL等）
 - `--sort`: ソート順（Most Downloaded、Newest等）
@@ -105,10 +105,10 @@ aimodel search --base-model "SDXL 1.0" --nsfw
 CivitAIからモデルをダウンロード:
 
 ```bash
-aimodel download MODEL_ID [オプション]
+aimodel download MODEL_ID [OPTIONS]
 ```
 
-**オプション:**
+**OPTIONS:**
 - `--version`: ダウンロードする特定バージョンID
 - `--file`: ダウンロードする特定ファイルID
 - `--path`: カスタムダウンロードディレクトリ
@@ -133,10 +133,10 @@ aimodel download-url "https://civitai.com/models/123456"
 モデルの詳細情報を表示:
 
 ```bash
-aimodel info TARGET [オプション]
+aimodel info TARGET [OPTIONS]
 ```
 
-**オプション:**
+**OPTIONS:**
 - `--local`: ターゲットをローカルファイルパスとして扱う
 
 **使用例:**
@@ -151,10 +151,10 @@ aimodel info ./model.safetensors --local
 既存モデルの不足メタデータとプレビューファイルを補完:
 
 ```bash
-aimodel metadata complete [PATH] [オプション]
+aimodel metadata complete [PATH] [OPTIONS]
 ```
 
-**オプション:**
+**OPTIONS:**
 - `--model-type, -t`: 特定モデルタイプのパスを処理（Checkpoint、LORA等）
 - `--recursive, -r / --no-recursive`: ファイルを再帰的に処理
 - `--force, -f`: 既存メタデータファイルを上書き
@@ -186,10 +186,10 @@ aimodel metadata hash /path/to/model.safetensors
 モデルアップデートの確認とレポート生成:
 
 ```bash
-aimodel update check [PATH] [オプション]
+aimodel update check [PATH] [OPTIONS]
 ```
 
-**オプション:**
+**OPTIONS:**
 - `--model-type, -t`: 特定モデルタイプのパスを確認（Checkpoint、LORA等）
 - `--recursive, -r / --no-recursive`: ファイルを再帰的に処理
 - `--download, -d`: 利用可能なアップデートを自動ダウンロード
@@ -222,10 +222,10 @@ aimodel update download /path/to/model.safetensors --version latest
 CLI設定の管理:
 
 ```bash
-aimodel config COMMAND [オプション]
+aimodel config COMMAND [OPTIONS]
 ```
 
-**コマンド:**
+**COMMANDS:**
 - `list`: すべての設定を表示
 - `get KEY`: 特定設定値を取得
 - `set KEY VALUE`: 設定値を設定
